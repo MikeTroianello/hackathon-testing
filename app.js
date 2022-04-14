@@ -33,7 +33,7 @@ app.get("/", function (req, res, next) {
 app.get("/user", function (req, res, next) {
   //This is a 'regular' JS function
 
-  User.findOne()
+  User.find()
     .then(function (foundUser) {
       console.log("We found a user", foundUser);
       res.render("user", { user: foundUser });
