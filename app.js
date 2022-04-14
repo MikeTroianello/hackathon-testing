@@ -4,6 +4,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+const mongoose = require('mongoose')
+
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
@@ -37,5 +40,10 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+mongoose
+  .connect('mongodb://localhost/hackathonTest') //change hackathonTest to your db name
+  .then(x => console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`))
+  .catch(err => console.error('Error connecting to mongo', err));
 
 module.exports = app;
