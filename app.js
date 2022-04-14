@@ -11,39 +11,6 @@ var usersRouter = require("./routes/users");
 
 var app = express();
 
-let users = [
-  {
-    name: "Bob",
-    age: 32,
-    isStudent: false,
-  },
-  {
-    name: "Jane",
-    age: 31,
-    isStudent: false,
-  },
-  {
-    name: "Andy",
-    age: 21,
-    isStudent: true,
-  },
-  {
-    name: "Juan",
-    age: 23,
-    isStudent: true,
-  },
-  {
-    name: "Jess",
-    age: 25,
-    isStudent: false,
-  },
-  {
-    name: "Kyle",
-    age: 19,
-    isStudent: true,
-  },
-];
-
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
