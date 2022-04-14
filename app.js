@@ -3,6 +3,7 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+const User = require("./models/User.models");
 
 const mongoose = require("mongoose");
 
@@ -21,8 +22,26 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", indexRouter);
-app.use("/users", usersRouter);
+// app.use("/", indexRouter);
+// app.use("/users", usersRouter);
+
+app.get("/", function (req, res, next) {
+  res.render("index", { title: "Express" });
+});
+
+//Dont code along!
+app.get("/user", function (req, res, next) {
+  //This is a 'regular' JS function
+
+  User.findOne()
+    .then(function (foundUser) {
+      console.log("We found a user", foundUser);
+      res.render("user", { user: foundUser });
+    })
+    .catch(function (err) {
+      console.log("Something went wrong", err.message);
+    });
+});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
